@@ -29,7 +29,7 @@ class _SignUpState extends State<SignUp> {
     try {
       final UserCredential user = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      firestore.collection("users").doc().set({
+      firestore.collection("users").doc(user.user!.uid).set({
         "email": email,
         "username": username,
       });

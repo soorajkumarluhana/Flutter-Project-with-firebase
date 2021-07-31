@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:soorajkumarluhana/AddData.dart';
+import 'package:soorajkumarluhana/Home.dart';
 import 'package:soorajkumarluhana/LoginPage.dart';
 import 'package:soorajkumarluhana/SignUp.dart';
 
@@ -26,7 +28,12 @@ class _MyAppState extends State<MyApp> {
         if (snapshot.connectionState == ConnectionState.done) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: SignUp(),
+            home: Data(),
+            routes: {
+              "/Login": (context) => LoginPage(),
+              "/SignUp":(context) => SignUp(),
+              "/home": (context) => Home(),
+            },
           );
         }
         return Container();

@@ -26,16 +26,15 @@ class _LoginPageState extends State<LoginPage> {
     final String password = passwordcontroller.text;
 
     try {
-      final UserCredential user = await auth.createUserWithEmailAndPassword(
+      final UserCredential user = await auth.signInWithEmailAndPassword(
           email: email, password: password);
       final DocumentSnapshot snapshot =
-          await firestore.collection("users").doc().get();
+          await firestore.collection("users").doc(user.user!.uid).get();
 
-      final data =  snapshot.data();
-      print("User is login");
-    
+      final data = snapshot.data();
+      Navigator.of(context).pushNamed("/home");
     } catch (e) {
-      print("Error");
+      print("Please enter correct password");
     }
   }
 
